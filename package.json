@@ -1,0 +1,40 @@
+{
+	"name": "automation-testing",
+	"version": "0.0.1",
+	"description": "hybrid automation tool for pupeteer and selenium with mocha-chai",
+	"scripts": {
+		"test": "mocha --opts mocha.opts",
+		"eslint": "./node_modules/.bin/eslint src/ test/"
+	},
+	"keywords": [
+		"testing",
+		"mocha",
+		"chai",
+		"puppeteer",
+		"selenium"
+	],
+	"author": "stepanchaparyan",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/stepanchaparyan/hybrid_selenium_puppeteer.git"
+	},
+	"dependencies": {
+		"chai": "^4.1.2",
+		"mocha": "^4.1.0",
+		"mochawesome": "^3.1.1",
+		"puppeteer": "^0.13.0",
+		"chromedriver": "^2.46.0",
+		"geckodriver": "^1.16.0",
+		"selenium-webdriver": "^4.0.0-alpha.1"
+	},
+	"devDependencies": {
+		"babel-core": "^6.26.3",
+		"babel-eslint": "^8.2.2",
+		"babel-preset-env": "1.7.0",
+		"eslint": "^4.19.1",
+		"eslint-loader": "^1.9.0",
+		"eslint-plugin-mocha": "^5.2.1",
+		"eslint-plugin-promise": "^3.5.0"
+	}
+}
