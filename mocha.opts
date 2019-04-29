@@ -1,4 +1,4 @@
---require babel-core/register test/test.spec.js
+--require babel-core/register test/allTests.spec.js
 --timeout 1500000
 
 

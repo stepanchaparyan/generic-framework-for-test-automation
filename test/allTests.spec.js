@@ -1,1 +1,2 @@
-import './test.spec';
+//import './test.spec';
+import './edx.spec';
