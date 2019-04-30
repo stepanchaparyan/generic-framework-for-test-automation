@@ -7,27 +7,26 @@ const argumentS = args(process.argv.slice(2));
 const fremworkFromArgument = argumentS._[1];
 
 let browser, driver;
-let selector = '#tsf > div:nth-child(2) > div > div.RNNXgb > div > div.a4bIc > input';
 
 export default class Driver {
-   
+
     async runDriver() {
-        if (fremworkFromArgument == 'selenium') {
+        if (fremworkFromArgument === 'selenium') {
             driver = new Builder().forBrowser('chrome')
             .setChromeOptions(chromeOptions).build();
-        } else if (fremworkFromArgument == 'puppeteer') {
+        } else if (fremworkFromArgument === 'puppeteer') {
             browser = await launchPuppeteer();
             driver = await browser.newPage();
             await driver.setViewport(puppeteerSettings.viewport);
         } else {
             throw new Error('Please provide framework name, i.e. selenium or puppeteer');
-        }        
-    }	
+        }
+    }
 
     async closeDriver() {
-        if (fremworkFromArgument == 'selenium') { 
+        if (fremworkFromArgument === 'selenium') {
             await driver.quit();
-        } else if (fremworkFromArgument == 'puppeteer') {
+        } else if (fremworkFromArgument === 'puppeteer') {
             await browser.close();
         }
     }
@@ -49,6 +48,18 @@ export default class Driver {
     }
 
     async type (selector, text) {
+        if (fremworkFromArgument === 'selenium') {
+            await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the child element within the time specified');
+            await this.clear(selector);
+            await driver.findElement(By.css(selector)).sendKeys(text);
+        } else if (fremworkFromArgument === 'puppeteer') {
+            await driver.waitFor(selector);
+            await this.clear(selector);
+            await driver.type(selector, text);
+        }
+    }
+
+    async select (selector, text) {
         if (fremworkFromArgument === 'selenium') {
             await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the child element within the time specified');
             await driver.findElement(By.css(selector)).sendKeys(text);
@@ -80,19 +91,34 @@ export default class Driver {
         if (fremworkFromArgument === 'selenium') {
             await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the child element within the time specified');
             let element = await driver.findElement(By.css(selector));
-            let text = await element.getText();
-            return await text;
+            return await element.getText();
         } else if (fremworkFromArgument === 'puppeteer') {
             await driver.waitForSelector(selector, {visible: true});
-            const text = await driver.$eval(selector, (text) => text.innerText);
-            return await text;
+            return await driver.$eval(selector, (text) => text.innerText);
         }
     }
 
-    // async clear(selector) {
-    //     await this.driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the child element within the time specified');
-    //     await this.driver.findElement(By.css(selector)).clear();
-    // }
+    async getURL() {
+        if (fremworkFromArgument === 'selenium') {
+            return await driver.getCurrentUrl();
+        } else if (fremworkFromArgument === 'puppeteer') {
+            return await driver.url();
+        }
+    }
+
+    async clear(selector) {
+        if (fremworkFromArgument === 'selenium') {
+            await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the child element within the time specified');
+            await driver.findElement(By.css(selector)).clear();
+        } else if (fremworkFromArgument === 'puppeteer') {
+            await this.click(selector);
+            await driver.keyboard.down('Control');
+            await driver.keyboard.press('KeyA');
+            await driver.keyboard.up('Control');
+            await driver.keyboard.press('Backspace');
+        }
+    }
+
 
     // async getElementsLength(selector) {
     //     const length = await this.driver.findElements(By.css(selector)).then(bots => bots.length);

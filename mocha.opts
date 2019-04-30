@@ -1,4 +1,5 @@
 --require babel-core/register test/allTests.spec.js
 --timeout 1500000
 
-
+--reporter mochawesome
+--reporter-options quiet=true,json=false
