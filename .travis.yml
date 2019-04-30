@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "node"
+
+script: npm run puppeteer
+script: npm run selenium
+
+sudo: false
+
+notifications:
+  email:
+    - stepanchaparyan@gmail.com
+    on_success: never 
+    on_failure: always 
+    

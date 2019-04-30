@@ -17,7 +17,6 @@ describe('Test Examples', () => {
 		await myDriver.closeDriver();
 	});
 
-
 	it('getTitle', async () => {
 		expect(await edx.getTitle()).is.equal('edX | Free Online Courses by Harvard, MIT, & more');
 	});

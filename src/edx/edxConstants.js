@@ -11,7 +11,7 @@ module.exports = {
     },
     SEARCH_PAGE: {
         SELECTORS: {
-            VIEWING_RESULT_MATCHING: '#content > header > h2.js-result-msg.hide-phone'    
+            VIEWING_RESULT_MATCHING: '#content > header > h2.js-result-msg.hide-phone'
         }
     }
 };
