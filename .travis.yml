@@ -10,6 +10,6 @@ sudo: false
 notifications:
   email:
     - stepanchaparyan@gmail.com
-    on_success: never 
-    on_failure: always 
+    on_success: never
+    on_failure: always
     
