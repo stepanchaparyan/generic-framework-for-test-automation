@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "node"
 
-script: npm test puppeteer
+script: npm test selenium
 
 sudo: false
 
@@ -10,6 +10,6 @@ notifications:
   email:
     recipients:
     - stepanchaparyan@gmail.com
-    on_success: never
+    on_success: always
     on_failure: always
 
