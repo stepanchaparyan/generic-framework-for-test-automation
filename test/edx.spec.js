@@ -33,19 +33,4 @@ describe('Test Examples', () => {
 		expect(anyTextFromResultPage).is.equal('Viewing');
 	});
 
-
-
-	it('changeLanguage', async () => {
-		const spanishWord = await edx.changeLanguage();
-		expect(spanishWord).is.equal('Enviar');
-	});
-	it('goToAboutPage', async () => {
-		const aboutPageURL = await edx.goToAboutPage();
-		expect(aboutPageURL).is.equal('https://www.edx.org/about-us');
-	});
-	it('search', async () => {
-		const anyTextFromResultPage = await edx.search();
-		expect(anyTextFromResultPage).is.equal('Viewing');
-	});
-
 });
