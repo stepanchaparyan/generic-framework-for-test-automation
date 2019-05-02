@@ -2,12 +2,12 @@ language: node_js
 node_js:
   - "node"
 
+addons:
+  chrome: stable
+
 script: npm test 
 
 sudo: false
-
-addons:
-  chrome: stable
 
 notifications:  
   email:
