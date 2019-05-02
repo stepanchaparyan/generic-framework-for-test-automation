@@ -6,6 +6,9 @@ script: npm test selenium
 
 sudo: false
 
+addons:
+  chrome: stable
+
 notifications:  
   email:
     recipients:
