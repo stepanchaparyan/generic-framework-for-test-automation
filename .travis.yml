@@ -13,6 +13,6 @@ notifications:
   email:
     recipients:
     - stepanchaparyan@gmail.com
-    on_success: always
+    on_success: never
     on_failure: always
 
