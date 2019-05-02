@@ -2,8 +2,10 @@ language: node_js
 node_js:
   - "node"
 
-script: npm test puppeteer
 script: npm test selenium
+
+before_script:
+  - npm test puppeteer
 
 sudo: false
 
