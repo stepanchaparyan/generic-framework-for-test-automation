@@ -5,7 +5,5 @@ chromeOptions.addArguments('--headless');
 //options.addArguments('--start-maximized');
 chromeOptions.addArguments('--window-size=1000,1000');
 chromeOptions.addArguments('disable-infobars');
-chromeOptions.addArguments('--no-sandbox');
-chromeOptions.addArguments('--disable-gpu');
 
 export default chromeOptions;
