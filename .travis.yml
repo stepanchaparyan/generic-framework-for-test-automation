@@ -4,8 +4,12 @@ node_js:
 
 script: npm test puppeteer
 
-
 sudo: false
 
+notifications:  
+  email:
+    recipients:
+    - stepanchaparyan@gmail.com
+    on_success: never
+    on_failure: always
 
-    
