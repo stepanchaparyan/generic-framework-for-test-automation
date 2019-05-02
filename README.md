@@ -1,7 +1,8 @@
 # Selenium&Puppeteer
-> Hibrid solution for running two most popular test frameworks together from argument
 
 [![Build Status](https://travis-ci.org/stepanchaparyan/hybrid_selenium_puppeteer.svg?branch=master)](https://travis-ci.org/stepanchaparyan/hybrid_selenium_puppeteer)
+
+> Hibrid solution for running two most popular test frameworks together from argument
 
 ## Getting started
 #### Instalation

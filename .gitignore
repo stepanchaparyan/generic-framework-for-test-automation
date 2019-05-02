@@ -4,4 +4,4 @@ mochawesome-report
 .git
 .*.swp
 ._*
-
+.vscode
