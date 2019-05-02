@@ -5,7 +5,7 @@ node_js:
 addons:
   chrome: stable
 
-script: npm test 
+script: npm run test:puppeteer 
 
 sudo: false
 
