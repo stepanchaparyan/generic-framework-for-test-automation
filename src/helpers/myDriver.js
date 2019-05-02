@@ -2,6 +2,7 @@ import { Builder, By, until } from 'selenium-webdriver';
 import launchPuppeteer from '../../settings_puppeteer/launchPuppeteer';
 import * as puppeteerSettings from '../../settings_puppeteer/puppeteerSettings';
 import chromeOptions from '../../settings_selenium/chromeOptions';
+import firefoxOptions from '../../settings_selenium/firefoxOptions';
 import args from 'minimist';
 const argumentS = args(process.argv.slice(2));
 const fremworkFromArgument = argumentS._[1];
@@ -11,20 +12,21 @@ let browser, driver;
 export default class Driver {
 
     async runDriver() {
-        if (fremworkFromArgument === 'selenium') {
+        if (fremworkFromArgument === 'selenium_chrome') {
             driver = new Builder().forBrowser('chrome')
             .setChromeOptions(chromeOptions).build();
+        } else if (fremworkFromArgument === 'selenium_firefox') {
+            driver = new Builder().forBrowser('firefox')
+            .withCapabilities(firefoxOptions).build();
         } else if (fremworkFromArgument === 'puppeteer') {
             browser = await launchPuppeteer();
             driver = await browser.newPage();
             await driver.setViewport(puppeteerSettings.viewport);
-        } else {
-            throw new Error('Please provide framework name, i.e. selenium or puppeteer');
         }
     }
 
     async closeDriver() {
-        if (fremworkFromArgument === 'selenium') {
+        if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
             await driver.quit();
         } else if (fremworkFromArgument === 'puppeteer') {
             await browser.close();
@@ -32,7 +34,7 @@ export default class Driver {
     }
 
     async getTitle () {
-        if (fremworkFromArgument === 'selenium') {
+        if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
             return await driver.getTitle();
         } else if (fremworkFromArgument === 'puppeteer') {
             return await driver.title();
@@ -40,7 +42,7 @@ export default class Driver {
     }
 
     async goto (url) {
-        if (fremworkFromArgument === 'selenium') {
+        if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
             await driver.get(url);
         } else if (fremworkFromArgument === 'puppeteer') {
             await driver.goto(url);
@@ -48,7 +50,7 @@ export default class Driver {
     }
 
     async type (selector, text) {
-        if (fremworkFromArgument === 'selenium') {
+        if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
             await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the child element within the time specified');
             await this.clear(selector);
             await driver.findElement(By.css(selector)).sendKeys(text);
@@ -60,7 +62,7 @@ export default class Driver {
     }
 
     async select (selector, text) {
-        if (fremworkFromArgument === 'selenium') {
+        if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
             await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the child element within the time specified');
             await driver.findElement(By.css(selector)).sendKeys(text);
         } else if (fremworkFromArgument === 'puppeteer') {
@@ -70,7 +72,7 @@ export default class Driver {
     }
 
 	async wait(time) {
-        if (fremworkFromArgument === 'selenium') {
+        if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
             await driver.sleep(time);
         } else if (fremworkFromArgument === 'puppeteer') {
             await driver.waitFor(time);
@@ -78,7 +80,7 @@ export default class Driver {
     }
 
     async click(selector) {
-        if (fremworkFromArgument === 'selenium') {
+        if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
             await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the element within the time specified');
             await driver.findElement(By.css(selector)).click();
         } else if (fremworkFromArgument === 'puppeteer') {
@@ -88,7 +90,7 @@ export default class Driver {
     }
 
     async getText(selector) {
-        if (fremworkFromArgument === 'selenium') {
+        if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
             await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the child element within the time specified');
             let element = await driver.findElement(By.css(selector));
             return await element.getText();
@@ -99,7 +101,7 @@ export default class Driver {
     }
 
     async getURL() {
-        if (fremworkFromArgument === 'selenium') {
+        if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
             return await driver.getCurrentUrl();
         } else if (fremworkFromArgument === 'puppeteer') {
             return await driver.url();
@@ -107,7 +109,7 @@ export default class Driver {
     }
 
     async clear(selector) {
-        if (fremworkFromArgument === 'selenium') {
+        if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
             await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the child element within the time specified');
             await driver.findElement(By.css(selector)).clear();
         } else if (fremworkFromArgument === 'puppeteer') {

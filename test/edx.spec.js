@@ -32,4 +32,5 @@ describe('Test Examples', () => {
 		const anyTextFromResultPage = await edx.search();
 		expect(anyTextFromResultPage).is.equal('Viewing');
 	});
+
 });
