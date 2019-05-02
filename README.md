@@ -17,6 +17,8 @@ npm install
 
 ## Run tests
 ```sh
-npm test selenium (run with selenium )
-npm test puppeteer (run with puppeteer)
+npm test (run tests with three types mentioned down below)
+npm run test:puppeteer
+npm run test:selenium_chrome
+npm run test:selenium_firefox
 ```
