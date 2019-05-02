@@ -1,5 +1,9 @@
 --require babel-core/register test/allTests.spec.js
 --timeout 1500000
+--slow 2000
+
+--reporter tap
 
 --reporter mochawesome
 --reporter-options quiet=true,json=false
+
