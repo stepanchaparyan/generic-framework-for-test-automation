@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"description": "hybrid automation tool for pupeteer and selenium with mocha-chai",
 	"scripts": {
-		"test": "mocha --opts mocha.opts -- puppeteer && mocha --opts mocha.opts -- selenium_chrome && mocha --opts mocha.opts -- selenium_firefox",
+		"test": "mocha --opts mocha.opts -- puppeteer & mocha --opts mocha.opts -- selenium_chrome & mocha --opts mocha.opts -- selenium_firefox",
 		"test:puppeteer": "mocha --opts mocha.opts -- puppeteer",
 		"test:selenium_chrome": "mocha --opts mocha.opts -- selenium_chrome",
 		"test:selenium_firefox": "mocha --opts mocha.opts -- selenium_firefox",
