@@ -27,6 +27,7 @@ export default class Driver {
 
     async closeDriver() {
         if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
+            await driver.sleep(1000);
             await driver.quit();
         } else if (fremworkFromArgument === 'puppeteer') {
             await browser.close();
