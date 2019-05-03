@@ -22,8 +22,6 @@ export default class Driver {
             browser = await launchPuppeteer();
             driver = await browser.newPage();
             await driver.setViewport(puppeteerSettings.viewport);
-        } else {
-            console.log('else scope');
         }
     }
 
