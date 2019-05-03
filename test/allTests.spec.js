@@ -1,2 +1,2 @@
-//import './test.spec';
-import './edx.spec';
+import './list.am.spec';
+//import './edx.spec';

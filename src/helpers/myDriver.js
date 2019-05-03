@@ -122,6 +122,20 @@ export default class Driver {
         }
     }
 
+    async getElementsCount(selector) {
+        if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
+            return 5;
+        } else if (fremworkFromArgument === 'puppeteer') {
+            return await driver.$$eval(selector, items => items.length);
+        }
+	}
+    async selectorExist(selector) {
+        if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
+            return 5;
+        } else if (fremworkFromArgument === 'puppeteer') {
+            return await driver.$(selector) !== null;
+        }
+	}
 
     // async getElementsLength(selector) {
     //     const length = await this.driver.findElements(By.css(selector)).then(bots => bots.length);
