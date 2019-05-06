@@ -52,11 +52,11 @@ export default class Driver {
 
     async type (selector, text) {
         if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
-            await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the child element within the time specified');
+            await this.waitFor(selector);
             await this.clear(selector);
             await driver.findElement(By.css(selector)).sendKeys(text);
         } else if (fremworkFromArgument === 'puppeteer') {
-            await driver.waitFor(selector);
+            await this.waitFor(selector);
             await this.clear(selector);
             await driver.type(selector, text);
         }
@@ -64,10 +64,10 @@ export default class Driver {
 
     async select (selector, text) {
         if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
-            await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the child element within the time specified');
+            await this.waitFor(selector);
             await driver.findElement(By.css(selector)).sendKeys(text);
         } else if (fremworkFromArgument === 'puppeteer') {
-            await driver.waitFor(selector);
+            await this.waitFor(selector);
             await driver.type(selector, text);
         }
     }
@@ -80,23 +80,35 @@ export default class Driver {
         }
     }
 
+	async waitFor(selector, waitingTime = 10000) {
+        if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
+            await driver.wait(until.elementLocated(By.css(selector)), waitingTime);
+        } else if (fremworkFromArgument === 'puppeteer') {
+            try {
+                await driver.waitFor(selector, { timeout: waitingTime } );
+            } catch (error) {
+                throw Error (`Timeout Error: Waiting for element to be located By(css selector)', ${selector}, Wait timed out after ${waitingTime}ms`);
+            }
+        }
+    }
+
     async click(selector) {
         if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
-            await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the element within the time specified');
+            await this.waitFor(selector);
             await driver.findElement(By.css(selector)).click();
         } else if (fremworkFromArgument === 'puppeteer') {
-            await driver.waitFor(selector);
+            await this.waitFor(selector);
             await driver.click(selector);
         }
     }
 
     async getText(selector) {
         if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
-            await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the child element within the time specified');
+            await this.waitFor(selector);
             let element = await driver.findElement(By.css(selector));
             return await element.getText();
         } else if (fremworkFromArgument === 'puppeteer') {
-            await driver.waitForSelector(selector, {visible: true});
+            await this.waitFor(selector);
             return await driver.$eval(selector, (text) => text.innerText);
         }
     }
@@ -111,9 +123,10 @@ export default class Driver {
 
     async clear(selector) {
         if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
-            await driver.wait(until.elementLocated(By.css(selector)), 10000, 'Could not locate the child element within the time specified');
+            await this.waitFor(selector);
             await driver.findElement(By.css(selector)).clear();
         } else if (fremworkFromArgument === 'puppeteer') {
+            await this.waitFor(selector);
             await this.click(selector);
             await driver.keyboard.down('Control');
             await driver.keyboard.press('KeyA');

@@ -1,6 +1,6 @@
 --require babel-core/register test/allTests.spec.js
---timeout 60000
---slow 2000
+--timeout 30s
+--slow 1000
 
 --reporter tap
 
