@@ -124,29 +124,23 @@ export default class Driver {
 
     async getElementsCount(selector) {
         if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
-            return 5;
+            return await driver.findElements(By.css(selector)).then(items => items.length);
         } else if (fremworkFromArgument === 'puppeteer') {
             return await driver.$$eval(selector, items => items.length);
         }
 	}
     async selectorExist(selector) {
         if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
-            return 5;
+            return await driver.findElements(By.css(selector)) === null;
         } else if (fremworkFromArgument === 'puppeteer') {
             return await driver.$(selector) !== null;
         }
 	}
 
-    // async getElementsLength(selector) {
-    //     const length = await this.driver.findElements(By.css(selector)).then(bots => bots.length);
-    //     return await length;
-	// }
-
 	// async reload() {
 	// 	await this.driver.navigate().refresh();
 	// 	await this.driver.sleep(1000);
 	// }
-
 
 
 }

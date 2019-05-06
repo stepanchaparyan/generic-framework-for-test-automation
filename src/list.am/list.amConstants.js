@@ -10,7 +10,8 @@ module.exports = {
     MY_ACCOUNT_PAGE: {
         SELECTORS: {
             RENEW: '#main > div.tabbody > div > div > div:nth-child(1) > div > div:nth-child(3) > div:nth-child(2) > a:nth-child(1) > img',
-            ITEMS: '#main > div.tabbody > div > div > div'
+            ITEMS: '#main > div.tabbody > div > div > div',
+            RENEW_BUTTON_ON_DIALOG: '#submit_dlg_button'
         }
     }
 };

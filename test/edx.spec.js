@@ -4,7 +4,7 @@ import EDX from '../src/edx/edxPage';
 
 let myDriver, edx;
 
-describe('Test Examples', () => {
+describe('EDX.ORG Test Examples', () => {
 	myDriver = new Driver();
 	edx = new EDX();
 

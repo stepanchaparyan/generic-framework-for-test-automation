@@ -4,7 +4,7 @@ import LISTAM from '../src/list.am/list.amPage';
 
 let myDriver, listam;
 
-describe('Test Examples', () => {
+describe('LIST.AM Test Examples', () => {
 	myDriver = new Driver();
 	listam = new LISTAM();
 
