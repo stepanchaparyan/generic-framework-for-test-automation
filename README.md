@@ -11,9 +11,35 @@ git clone https://github.com/stepanchaparyan/hybrid_selenium_puppeteer.git
 npm install
 ```
 ## Usage
-* write your tests in test folder (create separate files)
-* write your page objects and constants in src folder (create separate files for every page)
+* write your tests in test folder (i.e yourTests.spec.js)
+* write your page objects and constants in src folder (i.e yourPage)
 * import created test file in Alltests.spec file
+
+```diff
+├── node_modules
+├── settings__puppeteer
+├── settings__selenium
+├── src
+    ├── helpers
+        ├── myDriver.js
+    ├── edx(example)
+        ├── edxConstants.js
+        ├── edxPage.js
++   └── yourPage
++       ├── yourPageConstants
++       └── yourPage.js
+├── test
++   ├── allTests.spec.js
+    ├── edx.spec.js(example)
++   └── yourTests.spec.js
+├── .babelrc
+├── .eslintrc.js
+├── .gitignore
+├── .travis.yml
+├── mocha.opts
+├── package.json
+└── readme.md
+```
 
 ## Run tests
 ```sh
