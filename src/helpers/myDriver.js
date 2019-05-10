@@ -7,7 +7,7 @@ import args from 'minimist';
 const argumentS = args(process.argv.slice(2));
 const fremworkFromArgument = argumentS._[1];
 
-let browser, driver;
+let browser, driver, capabilities;
 
 export default class Driver {
 
@@ -15,13 +15,18 @@ export default class Driver {
         if (fremworkFromArgument === 'selenium_chrome') {
             driver = new Builder().forBrowser('chrome')
             .setChromeOptions(chromeOptions).build();
+            capabilities = await driver.getCapabilities();
+            console.log('Selenium -', await capabilities.get('browserName'), await capabilities.get('version'));
         } else if (fremworkFromArgument === 'selenium_firefox') {
             driver = new Builder().forBrowser('firefox')
             .withCapabilities(firefoxOptions).build();
+            capabilities = await driver.getCapabilities();
+            console.log('Selenium -',await capabilities.getBrowserName(), await capabilities.getBrowserVersion());
         } else if (fremworkFromArgument === 'puppeteer') {
             browser = await launchPuppeteer();
             driver = await browser.newPage();
             await driver.setViewport(puppeteerSettings.viewport);
+            console.log('Puppeteer -', await browser.version());
         }
     }
 

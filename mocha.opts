@@ -5,5 +5,5 @@
 --reporter tap
 
 --reporter mochawesome
---reporter-options quiet=true,json=false
+--reporter-options quiet=true
 

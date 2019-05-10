@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import Driver from '../src/helpers/myDriver';
 import EDX from '../src/edx/edxPage';
+import mailSender from '../src/helpers/mailSender';
 
 let myDriver, edx;
 
@@ -14,6 +15,7 @@ describe('EDX.ORG Test Examples', () => {
 	});
 
 	after(async () => {
+		//await mailSender();
 		await myDriver.closeDriver();
 	});
 
@@ -28,9 +30,8 @@ describe('EDX.ORG Test Examples', () => {
 		const aboutPageURL = await edx.goToAboutPage();
 		expect(aboutPageURL).is.equal('https://www.edx.org/about-us');
 	});
-	it('search', async () => {
+	it.skip('search', async () => {
 		const anyTextFromResultPage = await edx.search();
 		expect(anyTextFromResultPage).is.equal('Viewing');
 	});
-
 });

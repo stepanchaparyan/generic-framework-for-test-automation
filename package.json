@@ -26,9 +26,11 @@
 	"dependencies": {
 		"chai": "^4.1.2",
 		"chromedriver": "^74.0.0",
+		"fs": "0.0.1-security",
 		"geckodriver": "^1.16.2",
 		"mocha": "^4.1.0",
 		"mochawesome": "^3.1.2",
+		"nodemailer": "^6.1.1",
 		"puppeteer": "^1.15.0",
 		"selenium-webdriver": "^4.0.0-alpha.1"
 	},
