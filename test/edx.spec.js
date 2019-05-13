@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import Driver from '../src/helpers/myDriver';
 import EDX from '../src/edx/edxPage';
-import mailSender from '../src/helpers/mailSender';
 
 let myDriver, edx;
 
@@ -15,7 +14,6 @@ describe('EDX.ORG Test Examples', () => {
 	});
 
 	after(async () => {
-		//await mailSender();
 		await myDriver.closeDriver();
 	});
 

@@ -39,6 +39,16 @@ export default class Driver {
         }
     }
 
+    async getBrowserVersion () {
+        if (fremworkFromArgument === 'selenium_chrome') {
+            return `Selenium ${await capabilities.get('browserName')} ${await capabilities.get('version')}`;
+        } else if (fremworkFromArgument === 'selenium_firefox') {
+            return `Selenium ${await capabilities.getBrowserName()} ${await capabilities.getBrowserVersion()}`;
+        } else if (fremworkFromArgument === 'puppeteer') {
+            return `Puppeteer ${await browser.version()}`;
+        }
+    }
+
     async getTitle () {
         if (fremworkFromArgument === 'selenium_chrome' || fremworkFromArgument === 'selenium_firefox') {
             return await driver.getTitle();

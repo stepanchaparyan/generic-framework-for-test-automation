@@ -22,7 +22,7 @@ describe('LIST.AM Test Examples', () => {
 	it('getTitle', async () => {
 		expect(await listam.getTitle()).is.equal('List.am - Հայաստանի հայտարարություններ');
 	});
-	it('count', async () => {
+	it('reNew items', async () => {
 		await listam.clickOnReNewButtons();
 		await myDriver.wait(2000);
 	});

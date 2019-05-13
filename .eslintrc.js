@@ -58,7 +58,7 @@ module.exports = {
         'no-unmodified-loop-condition': 1,
         'no-unused-expressions': 1,
         'no-unsafe-finally': 1,
-        'no-useless-call': 2,
+        'no-useless-call': 1,
         'no-self-compare': 2,
 
         /* Stylistic
