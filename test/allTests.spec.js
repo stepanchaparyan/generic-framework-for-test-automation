@@ -1,2 +1,2 @@
 import './list.am.spec';
-import './edx.spec';
+import './interpals.spec';

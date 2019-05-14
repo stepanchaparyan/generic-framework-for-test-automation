@@ -12,7 +12,7 @@ describe('LIST.AM Test Examples', () => {
 		await myDriver.runDriver();
 		await listam.openPage();
 		await listam.login();
-		await myDriver.wait(1000); //!
+		await myDriver.wait(1000);
 	});
 
 	after(async () => {
@@ -26,17 +26,5 @@ describe('LIST.AM Test Examples', () => {
 		await listam.clickOnReNewButtons();
 		await myDriver.wait(2000);
 	});
-	// it('changeLanguage', async () => {
-	// 	const spanishWord = await edx.changeLanguage();
-	// 	expect(spanishWord).is.equal('Enviar');
-	// });
-	// it('goToAboutPage', async () => {
-	// 	const aboutPageURL = await edx.goToAboutPage();
-	// 	expect(aboutPageURL).is.equal('https://www.edx.org/about-us');
-	// });
-	// it('search', async () => {
-	// 	const anyTextFromResultPage = await edx.search();
-	// 	expect(anyTextFromResultPage).is.equal('Viewing');
-	// });
 
 });

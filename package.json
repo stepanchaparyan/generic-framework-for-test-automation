@@ -3,9 +3,10 @@
 	"version": "0.0.1",
 	"description": "hybrid automation tool for pupeteer and selenium with mocha-chai",
 	"scripts": {
-		"test": "npm run test:puppeteer ; npm run test:selenium_chrome ; npm run test:selenium_firefox",
-		"test:parallel": "npm run test:puppeteer & npm run test:selenium_chrome & npm run test:selenium_firefox",
-		"test:puppeteer": "mocha --opts mocha.opts -- puppeteer ; mocha --require babel-core/register test/sendMail.spec.js --timeout 30s -- puppeteer",
+		"test": "npm run test:puppeteer_chrome ; npm run test:puppeteer_firefox ; npm run test:selenium_chrome ; npm run test:selenium_firefox",
+		"test:parallel": "npm run test:puppeteer_chrome & npm run test:puppeteer_firefox & npm run test:selenium_chrome & npm run test:selenium_firefox",
+		"test:puppeteer_chrome": "mocha --opts mocha.opts -- puppeteer_chrome ; mocha --require babel-core/register test/sendMail.spec.js --timeout 30s -- puppeteer_chrome",
+		"test:puppeteer_firefox": "mocha --opts mocha.opts -- puppeteer_firefox ; mocha --require babel-core/register test/sendMail.spec.js --timeout 30s -- puppeteer_firefox",
 		"test:selenium_chrome": "mocha --opts mocha.opts -- selenium_chrome ; mocha --require babel-core/register test/sendMail.spec.js --timeout 30s -- selenium_chrome",
 		"test:selenium_firefox": "mocha --opts mocha.opts -- selenium_firefox ; mocha --require babel-core/register test/sendMail.spec.js --timeout 30s -- selenium_firefox",
 		"eslint": "./node_modules/.bin/eslint src/ test/"
@@ -32,6 +33,7 @@
 		"mochawesome": "^3.1.2",
 		"nodemailer": "^6.1.1",
 		"puppeteer": "^1.15.0",
+		"puppeteer-firefox": "^0.5.0",
 		"selenium-webdriver": "^4.0.0-alpha.1"
 	},
 	"devDependencies": {
