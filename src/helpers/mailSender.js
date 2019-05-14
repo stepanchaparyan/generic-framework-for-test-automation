@@ -1,5 +1,4 @@
 import nodemailer from 'nodemailer';
-import creds from './nodemailerCreds';
 import fs from 'fs';
 import { promisify } from 'util';
 
@@ -13,8 +12,8 @@ module.exports = async function (browserVersion) {
 			port: 587,
 			secure: false,
 			auth: {
-				user: creds.email,
-				pass: creds.password
+				user: 'uiautotesting',
+				pass: 'Test05##'
 			}
 		});
 
