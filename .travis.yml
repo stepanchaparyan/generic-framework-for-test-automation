@@ -6,6 +6,7 @@ script: npm run test:puppeteer_firefox
 
 sudo: false
 
+dist: xenial
 addons:
   chrome: stable
   firefox: latest
