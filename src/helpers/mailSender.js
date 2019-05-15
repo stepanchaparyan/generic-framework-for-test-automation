@@ -11,8 +11,6 @@ module.exports = async function (browserVersion) {
 			service: 'gmail',
 			port: 587,
 			secure: false,
-			ignoreTLS: true, //!
-			requireTLS: false, //!
 			auth: {
 				user: 'uiautotesting',
 				pass: 'Test05##'
