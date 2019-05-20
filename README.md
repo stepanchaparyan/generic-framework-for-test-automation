@@ -5,10 +5,10 @@
 > Hibrid solution for running two most popular test frameworks together
 
 #### Supported browsers and tools
-> puppeteer-chrome (on ubuntu 16.04, ubuntu 18.04, windows 10)
-> puppeteer-firefox (on ubuntu 16.04, ubuntu 18.04)
-> selenium_chrome (on ubuntu 16.04, ubuntu 18.04, windows 10)
-> selenoum_firefox (on ubuntu 16.04, ubuntu 18.04, windows 10)
+* puppeteer-chrome (on ubuntu 16.04, ubuntu 18.04, windows 10)
+* puppeteer-firefox (on ubuntu 16.04, ubuntu 18.04)
+* selenium_chrome (on ubuntu 16.04, ubuntu 18.04, windows 10)
+* selenoum_firefox (on ubuntu 16.04, ubuntu 18.04, windows 10)
 
 ## Getting started
 #### Instalation
@@ -18,9 +18,9 @@ npm install
 ```
 
 #### Hint for windows users
-> Need to add selenium drivers' paths to the windows path variable list, see  [there](https://docs.alfresco.com/4.2/tasks/fot-addpath.html)
-> path for chromedriver - \node_modules\chromedriver\lib\chromedriver
-> path for geckodrive (firefox) - \node_modules\geckodriver
+###### Need to add selenium drivers' paths to the windows path variable list, see  [there](https://docs.alfresco.com/4.2/tasks/fot-addpath.html)
+* path for chromedriver - \node_modules\chromedriver\lib\chromedriver
+* path for geckodrive (firefox) - \node_modules\geckodriver
 ## Usage
 * write your tests in test folder (i.e yourTests.spec.js)
 * write your page objects and constants in src folder (i.e yourPage)
