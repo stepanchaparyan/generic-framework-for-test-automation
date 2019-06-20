@@ -61,6 +61,7 @@ test (  1-st parameter - browser:browserType (default is chrome)
         
     e.g. npm test browser:chrome framework:selenium noMail
 )
+
 ```
 #### Method 2-nd way - test by existing scripts
 ```sh
