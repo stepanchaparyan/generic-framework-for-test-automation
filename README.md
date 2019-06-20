@@ -2,7 +2,13 @@
 
 [![Build Status](https://travis-ci.org/stepanchaparyan/hybrid_selenium_puppeteer.svg?branch=master)](https://travis-ci.org/stepanchaparyan/hybrid_selenium_puppeteer)
 
-> Hibrid solution for running two most popular test frameworks together from argument
+> Hibrid solution for running two most popular test frameworks together
+
+#### Supported browsers and tools
+* browser:chrome framework:puppeteer (on ubuntu 16.04, ubuntu 18.04, windows 10)
+* browser:firefox framework:puppeteer (on ubuntu 16.04, ubuntu 18.04)
+* browser:chrome framework:selenium (on ubuntu 16.04, ubuntu 18.04, windows 10)
+* browser:firefox framework:selenoum  (on ubuntu 16.04, ubuntu 18.04, windows 10)
 
 ## Getting started
 #### Instalation
@@ -10,6 +16,11 @@
 git clone https://github.com/stepanchaparyan/hybrid_selenium_puppeteer.git
 npm install
 ```
+
+#### Hint for windows users
+###### Need to add selenium drivers' paths to the windows path variable list, see  [there](https://docs.alfresco.com/4.2/tasks/fot-addpath.html)
+* path for chromedriver - \node_modules\chromedriver\lib\chromedriver
+* path for geckodrive (firefox) - \node_modules\geckodriver
 ## Usage
 * write your tests in test folder (i.e yourTests.spec.js)
 * write your page objects and constants in src folder (i.e yourPage)
@@ -42,10 +53,27 @@ npm install
 ```
 
 ## Run tests
+#### Method 1 - test with parameters
 ```sh
-npm test (run tests with puppeteer, selenium_chrome and selenium_firefox together, step by step)
-npm run test:parallel (run tests with puppeteer, selenium_chrome and selenium_firefox together, parallel)
-npm run test:puppeteer (run tests only with puppeteer)
-npm run test:selenium_chrome (run tests only with selenium_chrome)
-npm run test:selenium_firefox (run tests only with selenium_firefox)
+test (  1-st parameter - browser:browserType (default is chrome)
+        2-nd parameter - framework:frameworkType  (default is puppeteer) 
+        3-th parameter - sendMail or noMail  (default is noMail)
+        
+    e.g. npm test browser:chrome framework:selenium noMail
+)
+```
+#### Method 2-nd way - test by existing scripts
+```sh
+test:all_noMail (run all tests with all mentioned browsers, one after another, without sending report mail)
+test:all_sendMail (run all tests with all mentioned browsers, one after another, with sending report mail)
+test:parallel_sendMail (run all tests with all mentioned browsers),
+test:parallel_noMail (run all tests with all mentioned browsers), 
+test:chrome_puppeteer (run only puppeteer on chrome)
+test:chrome_puppeteer_sendMail (run only puppeteer on chrome and send report mail)
+test:firefox_puppeteer (run only puppeteer on firefox)
+test:firefox_puppeteer_sendMail (run only puppeteer on firefox and send report mail) 
+test:chrome_selenium (run only selenium on chrome)
+test:chrome_selenium_sendMail (run only selenium on chrome and send report mail)
+test:firefox_selenium (run only selenium on firefox)
+test:firefox_selenium_sendMail (run only selenium on firefox and send report mail)
 ```
