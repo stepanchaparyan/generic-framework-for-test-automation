@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "node"
 
-script: npm run test:chrome_puppeteer
+script: npm run test:firefox_puppeteer
 
 sudo: false
 
