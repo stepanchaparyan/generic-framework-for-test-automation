@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "node"
 
-script: npm test test:chrome_puppeteer
+script: npm test browser:chrome framework:puppeteer noMail
 
 sudo: false
 
