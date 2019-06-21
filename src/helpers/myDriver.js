@@ -6,6 +6,9 @@ import firefoxPuppeteerOptions from '../../settings_puppeteer/firefoxPuppeteerOp
 import * as puppeteerSettings from '../../settings_puppeteer/puppeteerSettings';
 import chromeSeleniumOptions from '../../settings_selenium/chromeSeleniumOptions';
 import firefoxSeleniumOptions from '../../settings_selenium/firefoxSeleniumOptions';
+import edgeSeleniumOptions from '../../settings_selenium/edgeSeleniumOptions';
+import ieSeleniumOptions from '../../settings_selenium/ieSeleniumOptions';
+
 import args from 'minimist';
 const argumentS = args(process.argv.slice(2));
 import mailSender from './mailSender';
@@ -41,6 +44,18 @@ export default class Driver {
             capabilities = await driver.getCapabilities();
             console.log(await capabilities.get('browserName'), await capabilities.get('version'),' - Selenium');
 
+        } else if (browserFromArgument === 'browser:ie' && frameworkFromArgument === 'framework:selenium') {
+            driver = new Builder().forBrowser('ie')
+            .withCapabilities(ieSeleniumOptions).build();
+            capabilities = await driver.getCapabilities();
+            console.log(await capabilities.getBrowserName(), await capabilities.getBrowserVersion(),' - Selenium');
+
+        } else if (browserFromArgument === 'browser:edge' && frameworkFromArgument === 'framework:selenium') {
+            driver = new Builder().forBrowser('MicrosoftEdge')
+            .withCapabilities(edgeSeleniumOptions).build();
+            capabilities = await driver.getCapabilities();
+            console.log(await capabilities.getBrowserName(), await capabilities.getBrowserVersion(),' - Selenium');
+        
         } else if (browserFromArgument === 'browser:firefox' && frameworkFromArgument === 'framework:selenium') {
             driver = new Builder().forBrowser('firefox')
             .withCapabilities(firefoxSeleniumOptions).build();

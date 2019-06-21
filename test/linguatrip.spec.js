@@ -25,7 +25,7 @@ describe('LinguaTrip Test Examples', () => {
 		expect(await linguatrip.getTitle()).is.equal('LinguaTrip - official webpage. Language courses abroad. Widest selection of accredited schools. Lowest price guarantee!');
 	});
 	it('getTitleFromHigherEduPage', async () => {
-        expect(await linguatrip.getTitleFromHigherEduPage()).is.equal('international presence');
+        expect(await linguatrip.getTitleFromHigherEduPage()).include('international presence');
 	});
 
 });

@@ -4,15 +4,13 @@
 	"description": "hybrid automation tool for puppeteer and selenium with mocha-chai",
 	"scripts": {
 		"test": "mocha --opts mocha.opts",
-		
 		"test:all_noMail2": "npm-run-all --continue-on-error test:puppeteer_chrome test:puppeteer_firefox test:selenium_chrome test:selenium_firefox",
 		"test:all_sendMail2": "npm-run-all --continue-on-error test:puppeteer_chrome_sendMail test:puppeteer_firefox_sendMail test:selenium_chrome_sendMail test:selenium_firefox_sendMail",
 		"test:all_noMail_no_puppeteer_firefox": "npm-run-all --continue-on-error test:puppeteer_chrome test:selenium_chrome test:selenium_firefox",
 		"test:all_sendMail_no_puppeteer_firefox": "npm-run-all --continue-on-error test:puppeteer_chrome_sendMail test:selenium_chrome_sendMail test:selenium_firefox_sendMail",
 		"test:parallel_sendMail2": "npm-run-all --parallel test:puppeteer_chrome_sendMail test:puppeteer_firefox_sendMail test:selenium_chrome_sendMail test:selenium_firefox_sendMail",
 		"test:parallel_noMail2": "npm-run-all --parallel test:puppeteer_chrome test:puppeteer_firefox test:selenium_chrome test:selenium_firefox",
-		
-		"test:puppeteer_chrome": "mocha --opts mocha.opts -- puppeteer_chrome",		
+		"test:puppeteer_chrome": "mocha --opts mocha.opts -- puppeteer_chrome",
 		"test:puppeteer_chrome_sendMail": "npm-run-all --continue-on-error test:puppeteer_chrome test:sendMail",
 		"test:puppeteer_firefox": "mocha --opts mocha.opts -- puppeteer_firefox",
 		"test:puppeteer_firefox_sendMail": "npm-run-all --continue-on-error test:puppeteer_firefox test:sendMail",
@@ -20,22 +18,18 @@
 		"test:selenium_chrome_sendMail": "npm-run-all --continue-on-error test:selenium_chrome test:sendMail",
 		"test:selenium_firefox": "mocha --opts mocha.opts -- selenium_firefox",
 		"test:selenium_firefox_sendMail": "npm-run-all --continue-on-error test:selenium_firefox test:sendMail",
-		
 		"test:all_noMail": "npm-run-all --continue-on-error test:chrome_puppeteer test:firefox_puppeteer test:chrome_selenium test:firefox_selenium",
 		"test:chrome_puppeteer": "mocha --opts mocha.opts -- browser:chrome framework:puppeteer",
 		"test:firefox_puppeteer": "mocha --opts mocha.opts -- browser:firefox framework:puppeteer",
 		"test:firefox_selenium": "mocha --opts mocha.opts -- browser:firefox framework:selenium",
 		"test:chrome_selenium": "mocha --opts mocha.opts -- browser:chrome framework:selenium",
-		
 		"test:all_sendMail": "npm-run-all --continue-on-error test:chrome_puppeteer_sendMail test:firefox_puppeteer_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
 		"test:chrome_puppeteer_sendMail": "mocha --opts mocha.opts -- browser:chrome framework:puppeteer sendMail",
 		"test:firefox_puppeteer_sendMail": "mocha --opts mocha.opts -- browser:firefox framework:puppeteer sendMail",
 		"test:firefox_selenium_sendMail": "mocha --opts mocha.opts -- browser:firefox framework:selenium sendMail",
 		"test:chrome_selenium_sendMail": "mocha --opts mocha.opts -- browser:chrome framework:selenium sendMail",
-
 		"test:parallel_sendMail": "npm-run-all --parallel test:chrome_puppeteer_sendMail test:firefox_puppeteer_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
 		"test:parallel_noMail": "npm-run-all --parallel test:chrome_puppeteer test:firefox_puppeteer test:chrome_selenium test:firefox_selenium",
-		
 		"test:sendMail": "mocha --require babel-core/register test/sendMail.spec.js --timeout 30s -- puppeteer_chrome",
 		"eslint": "./node_modules/.bin/eslint src/ test/"
 	},
@@ -55,8 +49,10 @@
 	"dependencies": {
 		"chai": "^4.1.2",
 		"chromedriver": "^74.0.0",
+		"edgedriver": "^4.17134.1",
 		"fs": "0.0.1-security",
 		"geckodriver": "^1.16.2",
+		"iedriver": "^3.14.1",
 		"mocha": "^4.1.0",
 		"mochawesome": "^3.1.2",
 		"nodemailer": "^6.1.1",
