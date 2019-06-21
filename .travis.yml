@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "node"
 
-script: npm test browser:chrome
+script: npm test test:chrome_puppeteer_sendMail
 
 sudo: false
 
