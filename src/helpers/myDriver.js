@@ -1,5 +1,6 @@
 import { Builder, By, until } from 'selenium-webdriver';
 import puppeteerFirefox from 'puppeteer-firefox';
+import puppeteerEdge from 'puppeteer-edge';
 import puppeteerChrome from 'puppeteer';
 import chromePuppeteerOptions from '../../settings_puppeteer/chromePuppeteerOptions';
 import firefoxPuppeteerOptions from '../../settings_puppeteer/firefoxPuppeteerOptions';
@@ -61,6 +62,12 @@ export default class Driver {
             .withCapabilities(firefoxSeleniumOptions).build();
             capabilities = await driver.getCapabilities();
             console.log(await capabilities.getBrowserName(), await capabilities.getBrowserVersion(),' - Selenium');
+        
+        } else if (browserFromArgument === 'browser:edge' && frameworkFromArgument === 'framework:puppeteer') {
+            browser = await puppeteerEdge.launch(firefoxPuppeteerOptions);
+            driver = await browser.newPage();
+            await driver.setViewport(puppeteerSettings.viewport);
+            console.log(await browser.version(),' - Puppeteer');
 
         } else if (browserFromArgument === 'browser:chrome' && frameworkFromArgument === 'framework:puppeteer') {
             browser = await puppeteerChrome.launch(chromePuppeteerOptions);
@@ -73,6 +80,7 @@ export default class Driver {
             driver = await browser.newPage();
             await driver.setViewport(puppeteerSettings.viewport);
             console.log(await browser.version(),' - Puppeteer');
+
         } else {
             throw new Error('Wrong parameters: 1-st parameter must be browser:browserType, 2-nd framework:frameworkType, 3-th sendMail or noMail, for example "npm test browser:chrome framework:selenium noMail"');
         }
@@ -100,7 +108,9 @@ export default class Driver {
             return `Selenium ${await capabilities.getBrowserName()} ${await capabilities.getBrowserVersion()}`;
         } else if (frameworkFromArgument === 'framework:puppeteer') {
             return `Puppeteer ${await browser.version()}`;
-        }
+        } else if (frameworkFromArgument === 'framework:selenium' && browserFromArgument === 'browser:edge') {
+            return `Selenium ${await capabilities.getBrowserName()} ${await capabilities.getBrowserVersion()}`;
+        } 
     }
 
     async getTitle () {
