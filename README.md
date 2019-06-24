@@ -69,10 +69,10 @@ test (  1-st parameter - browser:browserType (default is chrome)
 ```
 #### Method 2-nd way - test by existing scripts
 ```sh
-test:all_noMail (run all tests with all mentioned browsers, one after another, without sending report mail)
+test:all (run all tests with all mentioned browsers, one after another, without sending report mail)
 test:all_sendMail (run all tests with all mentioned browsers, one after another, with sending report mail)
-test:parallel_sendMail (run all tests with all mentioned browsers),
-test:parallel_noMail (run all tests with all mentioned browsers), 
+test:all_parallel (run all tests with all mentioned browsers),
+test:all_parallel_sendMail (run all tests with all mentioned browsers and send mail), 
 test:chrome_puppeteer (run only puppeteer on chrome)
 test:chrome_puppeteer_sendMail (run only puppeteer on chrome and send report mail)
 test:firefox_puppeteer (run only puppeteer on firefox)
@@ -81,4 +81,7 @@ test:chrome_selenium (run only selenium on chrome)
 test:chrome_selenium_sendMail (run only selenium on chrome and send report mail)
 test:firefox_selenium (run only selenium on firefox)
 test:firefox_selenium_sendMail (run only selenium on firefox and send report mail)
+test:edge_selenium (run only selenium on edge)
+test:edge_selenium_sendMail (run only selenium on edge and send report mail)
 ```
+	
