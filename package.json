@@ -8,23 +8,30 @@
 		"test:All": "run-script-os",
 		"test:All:win32": "npm-run-all --continue-on-error test:chrome_puppeteer test:edge_selenium test:chrome_selenium test:firefox_selenium",
 		"test:All:darwin:linux": "npm-run-all --continue-on-error test:chrome_puppeteer test:firefox_puppeteer test:chrome_selenium test:firefox_selenium",
-			
-		"test:all_sendMail": "npm-run-all --continue-on-error test:chrome_puppeteer_sendMail test:firefox_puppeteer_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
 
+		"test:All_sendMail": "run-script-os",
+		"test:All_sendMail:win32": "npm-run-all --continue-on-error test:chrome_puppeteer_sendMail test:edge_selenium_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
+		"test:All_sendMail:darwin:linux": "npm-run-all --continue-on-error test:chrome_puppeteer_sendMail test:firefox_puppeteer_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
+		
+		"test:All_parallel": "run-script-os",
+		"test:All_parallel:win32": "npm-run-all --parallel test:chrome_puppeteer test:edge_selenium test:chrome_selenium test:firefox_selenium",
+		"test:All_parallel:darwin:linux": "npm-run-all --parallel test:chrome_puppeteer test:firefox_puppeteer test:chrome_selenium test:firefox_selenium",
+
+		"test:All_parallel_sendMail": "run-script-os",
+		"test:All_parallel_sendMail:win32": "npm-run-all --parallel test:chrome_puppeteer_sendMail test:edge_selenium_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
+		"test:All_parallel_sendMail:darwin:linux": "npm-run-all --parallel test:chrome_puppeteer_sendMail test:firefox_puppeteer_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
+		
 		"test:chrome_puppeteer": "mocha --opts mocha.opts -- browser:chrome framework:puppeteer",
 		"test:firefox_puppeteer": "mocha --opts mocha.opts -- browser:firefox framework:puppeteer",
 		"test:firefox_selenium": "mocha --opts mocha.opts -- browser:firefox framework:selenium",
 		"test:chrome_selenium": "mocha --opts mocha.opts -- browser:chrome framework:selenium",
 		"test:edge_selenium": "mocha --opts mocha.opts -- browser:edge framework:selenium",
-				
+
 		"test:chrome_puppeteer_sendMail": "mocha --opts mocha.opts -- browser:chrome framework:puppeteer sendMail",
 		"test:firefox_puppeteer_sendMail": "mocha --opts mocha.opts -- browser:firefox framework:puppeteer sendMail",
 		"test:firefox_selenium_sendMail": "mocha --opts mocha.opts -- browser:firefox framework:selenium sendMail",
 		"test:chrome_selenium_sendMail": "mocha --opts mocha.opts -- browser:chrome framework:selenium sendMail",
 		"test:edge_selenium_sendMail": "mocha --opts mocha.opts -- browser:edge framework:selenium sendMail",
-		
-		"test:parallel_sendMail": "npm-run-all --parallel test:chrome_puppeteer_sendMail test:firefox_puppeteer_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
-		"test:parallel_noMail": "npm-run-all --parallel test:chrome_puppeteer test:firefox_puppeteer test:chrome_selenium test:firefox_selenium",
 		
 		"test:sendMail": "mocha --require babel-core/register test/sendMail.spec.js --timeout 30s -- puppeteer_chrome",
 		"eslint": "./node_modules/.bin/eslint src/ test/"

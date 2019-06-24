@@ -56,13 +56,13 @@ export default class Driver {
             .withCapabilities(edgeSeleniumOptions).build();
             capabilities = await driver.getCapabilities();
             console.log(await capabilities.getBrowserName(), await capabilities.getBrowserVersion(),' - Selenium');
-        
+
         } else if (browserFromArgument === 'browser:firefox' && frameworkFromArgument === 'framework:selenium') {
             driver = new Builder().forBrowser('firefox')
             .withCapabilities(firefoxSeleniumOptions).build();
             capabilities = await driver.getCapabilities();
             console.log(await capabilities.getBrowserName(), await capabilities.getBrowserVersion(),' - Selenium');
-        
+
         } else if (browserFromArgument === 'browser:edge' && frameworkFromArgument === 'framework:puppeteer') {
             browser = await puppeteerEdge.launch(firefoxPuppeteerOptions);
             driver = await browser.newPage();
@@ -110,7 +110,7 @@ export default class Driver {
             return `Puppeteer ${await browser.version()}`;
         } else if (frameworkFromArgument === 'framework:selenium' && browserFromArgument === 'browser:edge') {
             return `Selenium ${await capabilities.getBrowserName()} ${await capabilities.getBrowserVersion()}`;
-        } 
+        }
     }
 
     async getTitle () {

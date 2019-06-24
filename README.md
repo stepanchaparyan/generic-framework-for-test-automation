@@ -8,7 +8,9 @@
 * browser:chrome framework:puppeteer (on ubuntu 16.04, ubuntu 18.04, windows 10)
 * browser:firefox framework:puppeteer (on ubuntu 16.04, ubuntu 18.04)
 * browser:chrome framework:selenium (on ubuntu 16.04, ubuntu 18.04, windows 10)
-* browser:firefox framework:selenoum  (on ubuntu 16.04, ubuntu 18.04, windows 10)
+* browser:firefox framework:selenium  (on ubuntu 16.04, ubuntu 18.04, windows 10)
+* browser:edge framework:selenium  (windows 10)
+
 
 ## Getting started
 #### Instalation
@@ -21,6 +23,8 @@ npm install
 ###### Need to add selenium drivers' paths to the windows path variable list, see  [there](https://docs.alfresco.com/4.2/tasks/fot-addpath.html)
 * path for chromedriver - \node_modules\chromedriver\lib\chromedriver
 * path for geckodrive (firefox) - \node_modules\geckodriver
+* path for edgedrive - \node_modules\edgedriver\lib\edgedriver
+
 ## Usage
 * write your tests in test folder (i.e yourTests.spec.js)
 * write your page objects and constants in src folder (i.e yourPage)
