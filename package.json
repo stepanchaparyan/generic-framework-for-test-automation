@@ -10,15 +10,12 @@
 		"test:all_sendMail": "run-script-os",
 		"test:all_sendMail:win32": "npm-run-all --continue-on-error test:chrome_puppeteer_sendMail test:edge_selenium_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
 		"test:all_sendMail:darwin:linux": "npm-run-all --continue-on-error test:chrome_puppeteer_sendMail test:firefox_puppeteer_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
-		
 		"test:all_parallel": "run-script-os",
 		"test:all_parallel:win32": "npm-run-all --parallel test:chrome_puppeteer test:edge_selenium test:chrome_selenium test:firefox_selenium",
 		"test:all_parallel:darwin:linux": "npm-run-all --parallel test:chrome_puppeteer test:firefox_puppeteer test:chrome_selenium test:firefox_selenium",
-		
 		"test:all_parallel_sendMail": "run-script-os",
 		"test:all_parallel_sendMail:win32": "npm-run-all --parallel test:chrome_puppeteer_sendMail test:edge_selenium_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
 		"test:all_parallel_sendMail:darwin:linux": "npm-run-all --parallel test:chrome_puppeteer_sendMail test:firefox_puppeteer_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
-		
 		"test:chrome_puppeteer": "mocha --opts mocha.opts -- browser:chrome framework:puppeteer",
 		"test:firefox_puppeteer": "mocha --opts mocha.opts -- browser:firefox framework:puppeteer",
 		"test:firefox_selenium": "mocha --opts mocha.opts -- browser:firefox framework:selenium",
@@ -46,6 +43,7 @@
 		"url": "https://github.com/stepanchaparyan/hybrid_selenium_puppeteer.git"
 	},
 	"dependencies": {
+		"api-testrail": "^1.2.1",
 		"chai": "^4.1.2",
 		"chromedriver": "^74.0.0",
 		"edgedriver": "^4.17134.1",
