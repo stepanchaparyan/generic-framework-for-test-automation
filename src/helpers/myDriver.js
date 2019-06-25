@@ -26,10 +26,7 @@ if (argumentS._.length === 1) {
 } else if (argumentS._.length === 2 && argumentS._[1].startsWith('framework:') ) {
     browserFromArgument = 'browser:chrome';
     frameworkFromArgument = argumentS._[1];
-} else if (argumentS._.length === 3) {
-    browserFromArgument = argumentS._[1];
-    frameworkFromArgument = argumentS._[2];
-} else if (argumentS._.length === 4) {
+} else if (argumentS._.length > 2) {
     browserFromArgument = argumentS._[1];
     frameworkFromArgument = argumentS._[2];
 }
@@ -88,13 +85,13 @@ export default class Driver {
 
     async closeDriver() {
         if (frameworkFromArgument === 'framework:selenium') {
-            if (argumentS._.length === 4 && argumentS._[3].startsWith('sendMail')) {
+            if (argumentS._.includes('sendMail')) {
                 await mailSender(await this.getBrowserVersion());
             }
             await driver.sleep(1000);
             await driver.quit();
         } else if (frameworkFromArgument === 'framework:puppeteer') {
-            if (argumentS._.length === 4 && argumentS._[3].startsWith('sendMail')) {
+            if (argumentS._.includes('sendMail')) {
                 await mailSender(await this.getBrowserVersion());
             }
             await browser.close();
