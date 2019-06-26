@@ -10,12 +10,10 @@ import TestRailAPI from 'api-testrail';
 let testRailApi, runID, caseID;
 const argumentS = args(process.argv.slice(2));
 const runWithTestRail = argumentS._.includes('TestRail') ? true : false;
-
 let myDriver, utils, linguatrip;
 
 describe('LinguaTrip Test Examples', () => {
 	myDriver = new Driver();
-
 	linguatrip = new LinguaTrip();
 	utils = new Utils();
 
@@ -23,9 +21,11 @@ describe('LinguaTrip Test Examples', () => {
 		await myDriver.runDriver();
 		await linguatrip.openPage();
 		await myDriver.wait(1000);
-		testRailApi = new TestRailAPI(testRailCreds.host,testRailCreds.username, testRailCreds.password);
-		// set runID provided argument2 (if exist) or create new run
-		runID = await utils.addRunWithType(testRailApi,1,3);
+		if (runWithTestRail) {
+			testRailApi = new TestRailAPI(testRailCreds.host,testRailCreds.username, testRailCreds.password);
+			// set runID provided argument2 (if exist) or create new run
+			runID = await utils.addRunWithType(testRailApi,1,3);
+		}
 	});
 
 	afterEach(async () => {

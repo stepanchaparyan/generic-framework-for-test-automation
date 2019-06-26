@@ -12,7 +12,6 @@ import ieSeleniumOptions from '../../settings_selenium/ieSeleniumOptions';
 
 import args from 'minimist';
 const argumentS = args(process.argv.slice(2));
-import mailSender from './mailSender';
 
 let browserFromArgument;
 let frameworkFromArgument;
@@ -79,21 +78,14 @@ export default class Driver {
             console.log(await browser.version(),' - Puppeteer');
 
         } else {
-            throw new Error('Wrong parameters: 1-st parameter must be browser:browserType, 2-nd framework:frameworkType, 3-th sendMail or noMail, for example "npm test browser:chrome framework:selenium noMail"');
+            throw new Error('Wrong parameters: 1-st parameter must be browser:browserType, 2-nd framework:frameworkType, for example "npm test browser:chrome framework:selenium"');
         }
     }
 
     async closeDriver() {
         if (frameworkFromArgument === 'framework:selenium') {
-            if (argumentS._.includes('sendMail')) {
-                await mailSender(await this.getBrowserVersion());
-            }
-            await driver.sleep(1000);
             await driver.quit();
         } else if (frameworkFromArgument === 'framework:puppeteer') {
-            if (argumentS._.includes('sendMail')) {
-                await mailSender(await this.getBrowserVersion());
-            }
             await browser.close();
         }
     }
