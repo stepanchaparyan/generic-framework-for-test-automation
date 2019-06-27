@@ -88,10 +88,14 @@ export default class Driver {
             await driver.quit();
         } else if (frameworkFromArgument === 'framework:puppeteer') {
             if (argumentS._.includes('deleteCookies')) {
-                let cookies = await driver.cookies();
-                await driver.deleteCookie(...cookies);
-                cookies = await driver.cookies();
-                await driver.deleteCookie(...cookies);
+                if (browserFromArgument === 'browser:chrome') {
+                    let cookies = await driver.cookies();
+                    await driver.deleteCookie(...cookies);
+                    cookies = await driver.cookies();
+                    await driver.deleteCookie(...cookies);
+                } else if (browserFromArgument === 'browser:firefox') {
+                console.log('Delete Cookies not works on puppeteer firefox');            
+                }
             }
             await browser.close();
         }
