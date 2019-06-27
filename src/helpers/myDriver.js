@@ -13,8 +13,8 @@ import ieSeleniumOptions from '../../settings_selenium/ieSeleniumOptions';
 import args from 'minimist';
 const argumentS = args(process.argv.slice(2));
 
-let browserFromArgument;
-let frameworkFromArgument;
+let browserFromArgument, frameworkFromArgument;
+let browser, driver, capabilities;
 
 if (argumentS._.length === 1) {
     frameworkFromArgument = 'framework:puppeteer';
@@ -29,8 +29,6 @@ if (argumentS._.length === 1) {
     browserFromArgument = argumentS._[1];
     frameworkFromArgument = argumentS._[2];
 }
-
-let browser, driver, capabilities;
 
 export default class Driver {
 
@@ -84,8 +82,17 @@ export default class Driver {
 
     async closeDriver() {
         if (frameworkFromArgument === 'framework:selenium') {
+            if (argumentS._.includes('deleteCookies')) {
+                await driver.manage().deleteAllCookies();
+            }
             await driver.quit();
         } else if (frameworkFromArgument === 'framework:puppeteer') {
+            if (argumentS._.includes('deleteCookies')) {
+                let cookies = await driver.cookies();
+                await driver.deleteCookie(...cookies);
+                cookies = await driver.cookies();
+                await driver.deleteCookie(...cookies);
+            }
             await browser.close();
         }
     }
