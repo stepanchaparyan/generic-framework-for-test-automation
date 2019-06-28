@@ -4,5 +4,3 @@ module.exports = {
     //args: ['--start-maximized'],
     //headless: true, ignoreHTTPSErrors: true
 };
-
-
