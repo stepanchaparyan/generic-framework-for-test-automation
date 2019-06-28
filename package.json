@@ -16,25 +16,21 @@
 		"test:all_parallel_sendMail": "run-script-os",
 		"test:all_parallel_sendMail:win32": "npm-run-all --parallel test:chrome_puppeteer_sendMail test:edge_selenium_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
 		"test:all_parallel_sendMail:darwin:linux": "npm-run-all --parallel test:chrome_puppeteer_sendMail test:firefox_puppeteer_sendMail test:chrome_selenium_sendMail test:firefox_selenium_sendMail",
-		
 		"test:chrome_puppeteer": "mocha --opts mocha.opts -- browser:chrome framework:puppeteer",
 		"test:firefox_puppeteer": "mocha --opts mocha.opts -- browser:firefox framework:puppeteer",
 		"test:firefox_selenium": "mocha --opts mocha.opts -- browser:firefox framework:selenium",
 		"test:chrome_selenium": "mocha --opts mocha.opts -- browser:chrome framework:selenium",
 		"test:edge_selenium": "mocha --opts mocha.opts -- browser:edge framework:selenium",
-		
 		"test:chrome_puppeteer_sendMail": "npm-run-all --continue-on-error test:chrome_puppeteer test:sendMail_chrome_puppeteer",
 		"test:firefox_puppeteer_sendMail": "npm-run-all --continue-on-error test:firefox_puppeteer test:sendMail_firefox_puppeteer",
 		"test:firefox_selenium_sendMail": "npm-run-all --continue-on-error test:firefox_selenium test:sendMail_firefox_selenium",
 		"test:chrome_selenium_sendMail": "npm-run-all --continue-on-error test:chrome_selenium test:sendMail_chrome_selenium",
 		"test:edge_selenium_sendMail": "npm-run-all --continue-on-error test:edge_selenium test:sendMail_edge_selenium",
-
 		"test:sendMail_chrome_puppeteer": "mocha --require babel-core/register test/sendMail.spec.js --timeout 30s -- browser:chrome framework:puppeteer",
 		"test:sendMail_firefox_puppeteer": "mocha --require babel-core/register test/sendMail.spec.js --timeout 30s -- browser:firefox framework:puppeteer",
 		"test:sendMail_firefox_selenium": "mocha --require babel-core/register test/sendMail.spec.js --timeout 30s -- browser:firefox framework:selenium",
 		"test:sendMail_chrome_selenium": "mocha --require babel-core/register test/sendMail.spec.js --timeout 30s -- browser:chrome framework:selenium",
 		"test:sendMail_edge_selenium": "mocha --require babel-core/register test/sendMail.spec.js --timeout 30s -- browser:edge framework:selenium",
-
 		"eslint": "./node_modules/.bin/eslint src/ test/"
 	},
 	"keywords": [
@@ -57,7 +53,6 @@
 		"edgedriver": "^4.17134.1",
 		"fs": "0.0.1-security",
 		"geckodriver": "^1.16.2",
-		"iedriver": "^3.14.1",
 		"mocha": "^4.1.0",
 		"mochawesome": "^3.1.2",
 		"nodemailer": "^6.1.1",

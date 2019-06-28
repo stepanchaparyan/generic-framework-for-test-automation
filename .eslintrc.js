@@ -33,7 +33,7 @@ module.exports = {
         'no-throw-literal': 1,
         'no-case-declarations': 0,
         'comma-dangle': [2, 'never'],
-        'no-console': 1,
+        'no-console': 0,
         'block-scoped-var': 2,
         'consistent-return': 0,
         'curly': [1, 'all'],

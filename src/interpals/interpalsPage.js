@@ -1,21 +1,20 @@
-import Driver from '../helpers/myDriver';
 import INTERPALS from './interpalsConstants';
-//import { By, until } from 'selenium-webdriver';
+import Actions from '../helpers/actions';
 
 export default class InterpalsPage {
-	constructor () {
-		this.myDriver = new Driver();
+	constructor (driver) {
+		this.actions = new Actions(driver);
 	}
 
     async openPage () {
-        await this.myDriver.goto('https://www.interpals.net/');
+        await this.actions.goto('https://www.interpals.net/');
 	}
     async getTitle () {
-        return await this.myDriver.getTitle();
+        return await this.actions.getTitle();
 	}
 	async goToAboutPage () {
-		await this.myDriver.click(INTERPALS.FIRST_PAGE.SELECTORS.ABOUT);
-		let text = await this.myDriver.getText(INTERPALS.FIRST_PAGE.SELECTORS.ABOUT_TEXT);
+		await this.actions.click(INTERPALS.FIRST_PAGE.SELECTORS.ABOUT);
+		let text = await this.actions.getText(INTERPALS.FIRST_PAGE.SELECTORS.ABOUT_TEXT);
 		return await text;
 	}
 

@@ -1,26 +1,25 @@
 import { expect } from 'chai';
 import Driver from '../src/helpers/myDriver';
-import LinguaTrip from '../src/linguatrip/linguatrip';
-
+import LinguaTrip from '../src/linguatrip/linguatripPage';
 import Utils from '../src/helpers/utils';
 import args from 'minimist';
-import * as testRailCreds from '../settings_testrail/testRailSettings';
+import * as testRailCreds from '../settings/settings_testrail/testRailSettings';
 import TestRailAPI from 'api-testrail';
 
 let testRailApi, runID, caseID;
 const argumentS = args(process.argv.slice(2));
 const runWithTestRail = argumentS._.includes('TestRail') ? true : false;
-let myDriver, utils, linguatrip;
+let myDriver, driver, utils, linguatrip;
 
 describe('LinguaTrip Test Examples', () => {
-	myDriver = new Driver();
-	linguatrip = new LinguaTrip();
-	utils = new Utils();
 
 	before(async () => {
-		await myDriver.runDriver();
+		myDriver = new Driver();
+		driver = await myDriver.runDriver();
+		linguatrip = new LinguaTrip(driver);
+		utils = new Utils();
 		await linguatrip.openPage();
-		await myDriver.wait(1000);
+
 		if (runWithTestRail) {
 			testRailApi = new TestRailAPI(testRailCreds.host,testRailCreds.username, testRailCreds.password);
 			// set runID provided argument2 (if exist) or create new run

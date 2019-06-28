@@ -1,14 +1,13 @@
-import { Builder, By, until } from 'selenium-webdriver';
+import { Builder } from 'selenium-webdriver';
 import puppeteerFirefox from 'puppeteer-firefox';
 import puppeteerEdge from 'puppeteer-edge';
 import puppeteerChrome from 'puppeteer';
-import chromePuppeteerOptions from '../../settings_puppeteer/chromePuppeteerOptions';
-import firefoxPuppeteerOptions from '../../settings_puppeteer/firefoxPuppeteerOptions';
-import * as puppeteerSettings from '../../settings_puppeteer/puppeteerSettings';
-import chromeSeleniumOptions from '../../settings_selenium/chromeSeleniumOptions';
-import firefoxSeleniumOptions from '../../settings_selenium/firefoxSeleniumOptions';
-import edgeSeleniumOptions from '../../settings_selenium/edgeSeleniumOptions';
-import ieSeleniumOptions from '../../settings_selenium/ieSeleniumOptions';
+import chromePuppeteerOptions from '../../settings/settings_puppeteer/chromePuppeteerOptions';
+import firefoxPuppeteerOptions from '../../settings/settings_puppeteer/firefoxPuppeteerOptions';
+import * as puppeteerSettings from '../../settings/settings_puppeteer/puppeteerSettings';
+import chromeSeleniumOptions from '../../settings/settings_selenium/chromeSeleniumOptions';
+import firefoxSeleniumOptions from '../../settings/settings_selenium/firefoxSeleniumOptions';
+import edgeSeleniumOptions from '../../settings/settings_selenium/edgeSeleniumOptions';
 
 import args from 'minimist';
 const argumentS = args(process.argv.slice(2));
@@ -38,12 +37,6 @@ export default class Driver {
             .setChromeOptions(chromeSeleniumOptions).build();
             capabilities = await driver.getCapabilities();
             console.log(await capabilities.get('browserName'), await capabilities.get('version'),' - Selenium');
-
-        } else if (browserFromArgument === 'browser:ie' && frameworkFromArgument === 'framework:selenium') {
-            driver = new Builder().forBrowser('ie')
-            .withCapabilities(ieSeleniumOptions).build();
-            capabilities = await driver.getCapabilities();
-            console.log(await capabilities.getBrowserName(), await capabilities.getBrowserVersion(),' - Selenium');
 
         } else if (browserFromArgument === 'browser:edge' && frameworkFromArgument === 'framework:selenium') {
             driver = new Builder().forBrowser('MicrosoftEdge')
@@ -78,6 +71,7 @@ export default class Driver {
         } else {
             throw new Error('Wrong parameters: 1-st parameter must be browser:browserType, 2-nd framework:frameworkType, for example "npm test browser:chrome framework:selenium"');
         }
+        return driver;
     }
 
     async closeDriver() {
@@ -94,145 +88,11 @@ export default class Driver {
                     cookies = await driver.cookies();
                     await driver.deleteCookie(...cookies);
                 } else if (browserFromArgument === 'browser:firefox') {
-                console.log('Delete Cookies not works on puppeteer firefox');            
+                console.log('Delete Cookies not works on puppeteer firefox');
                 }
             }
             await browser.close();
         }
     }
-
-    async getBrowserVersion () {
-        if (frameworkFromArgument === 'framework:selenium' && browserFromArgument === 'browser:chrome') {
-            return `Selenium ${await capabilities.get('browserName')} ${await capabilities.get('version')}`;
-        } else if (frameworkFromArgument === 'framework:selenium' && browserFromArgument === 'browser:firefox') {
-            return `Selenium ${await capabilities.getBrowserName()} ${await capabilities.getBrowserVersion()}`;
-        } else if (frameworkFromArgument === 'framework:puppeteer') {
-            return `Puppeteer ${await browser.version()}`;
-        } else if (frameworkFromArgument === 'framework:selenium' && browserFromArgument === 'browser:edge') {
-            return `Selenium ${await capabilities.getBrowserName()} ${await capabilities.getBrowserVersion()}`;
-        }
-    }
-
-    async getTitle () {
-        if (frameworkFromArgument === 'framework:selenium') {
-            return await driver.getTitle();
-        } else if (frameworkFromArgument === 'framework:puppeteer') {
-            return await driver.title();
-        }
-    }
-
-    async goto (url) {
-        if (frameworkFromArgument === 'framework:selenium') {
-            await driver.get(url);
-        } else if (frameworkFromArgument === 'framework:puppeteer') {
-            await driver.goto(url);
-        }
-    }
-
-	async wait(time) {
-        if (frameworkFromArgument === 'framework:selenium') {
-            await driver.sleep(time);
-        } else if (frameworkFromArgument === 'framework:puppeteer') {
-            await driver.waitFor(time);
-        }
-    }
-
-    async waitFor(selector, waitingTime = 10000) {
-        if (frameworkFromArgument === 'framework:selenium') {
-            await driver.wait(until.elementLocated(By.css(selector)), waitingTime);
-        } else if (frameworkFromArgument === 'framework:puppeteer') {
-            try {
-                await driver.waitFor(selector, { timeout: waitingTime } );
-            } catch (error) {
-                throw Error (`Timeout Error: Waiting for element to be located By(css selector)', ${selector}, Wait timed out after ${waitingTime}ms`);
-            }
-        }
-    }
-
-    async click(selector) {
-        if (frameworkFromArgument === 'framework:selenium') {
-            await this.waitFor(selector);
-            await driver.findElement(By.css(selector)).click();
-        } else if (frameworkFromArgument === 'framework:puppeteer') {
-            await this.waitFor(selector);
-            await driver.click(selector);
-        }
-    }
-
-    async getText(selector) {
-        if (frameworkFromArgument === 'framework:selenium') {
-            await this.waitFor(selector);
-            let element = await driver.findElement(By.css(selector));
-            return await element.getText();
-        } else if (frameworkFromArgument === 'framework:puppeteer') {
-            await this.waitFor(selector);
-            return await driver.$eval(selector, (text) => text.innerText);
-        }
-    }
-
-    async type (selector, text) {
-        if (frameworkFromArgument === 'selenium_chrome' || frameworkFromArgument === 'selenium_firefox') {
-            await this.waitFor(selector);
-            await this.clear(selector);
-            await driver.findElement(By.css(selector)).sendKeys(text);
-        } else if (frameworkFromArgument === 'puppeteer_chrome' || frameworkFromArgument === 'puppeteer_firefox') {
-            await this.waitFor(selector);
-            await this.clear(selector);
-            await driver.type(selector, text);
-        }
-    }
-
-    async select (selector, text) {
-        if (frameworkFromArgument === 'selenium_chrome' || frameworkFromArgument === 'selenium_firefox') {
-            await this.waitFor(selector);
-            await driver.findElement(By.css(selector)).sendKeys(text);
-        } else if (frameworkFromArgument === 'puppeteer_chrome' || frameworkFromArgument === 'puppeteer_firefox') {
-            await this.waitFor(selector);
-            await driver.type(selector, text);
-        }
-    }
-
-    async getURL() {
-        if (frameworkFromArgument === 'selenium_chrome' || frameworkFromArgument === 'selenium_firefox') {
-            return await driver.getCurrentUrl();
-        } else if (frameworkFromArgument === 'puppeteer_chrome' || frameworkFromArgument === 'puppeteer_firefox') {
-            return await driver.url();
-        }
-    }
-
-    async clear(selector) {
-        if (frameworkFromArgument === 'selenium_chrome' || frameworkFromArgument === 'selenium_firefox') {
-            await this.waitFor(selector);
-            await driver.findElement(By.css(selector)).clear();
-        } else if (frameworkFromArgument === 'puppeteer_chrome' || frameworkFromArgument === 'puppeteer_firefox') {
-            await this.waitFor(selector);
-            await this.click(selector);
-            await driver.keyboard.down('Control');
-            await driver.keyboard.press('KeyA');
-            await driver.keyboard.up('Control');
-            await driver.keyboard.press('Backspace');
-        }
-    }
-
-    async getElementsCount(selector) {
-        if (frameworkFromArgument === 'selenium_chrome' || frameworkFromArgument === 'selenium_firefox') {
-            return await driver.findElements(By.css(selector)).then(items => items.length);
-        } else if (frameworkFromArgument === 'puppeteer_chrome' || frameworkFromArgument === 'puppeteer_firefox') {
-            return await driver.$$eval(selector, items => items.length);
-        }
-	}
-    async selectorExist(selector) {
-        if (frameworkFromArgument === 'selenium_chrome' || frameworkFromArgument === 'selenium_firefox') {
-            return await driver.findElements(By.css(selector)) === null;
-        } else if (frameworkFromArgument === 'puppeteer_chrome' || frameworkFromArgument === 'puppeteer_firefox') {
-            return await driver.$(selector) !== null;
-        }
-	}
-
-	// async reload() {
-	// 	await this.driver.navigate().refresh();
-	// 	await this.driver.sleep(1000);
-	// }
-
 
 }

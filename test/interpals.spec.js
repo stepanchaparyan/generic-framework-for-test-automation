@@ -2,16 +2,17 @@ import { expect } from 'chai';
 import Driver from '../src/helpers/myDriver';
 import Interpals from '../src/interpals/interpalsPage';
 
-let myDriver, interpals;
+let myDriver, driver, interpals;
 
 describe('Interpals Test Examples', () => {
-	myDriver = new Driver();
-	interpals = new Interpals();
-
 	before(async () => {
-		await myDriver.runDriver();
+		myDriver = new Driver();
+		driver = await myDriver.runDriver();
+		interpals = new Interpals(driver);
 		await interpals.openPage();
 	});
+
+
 	after(async () => {
 		await myDriver.closeDriver();
 	});
@@ -23,4 +24,6 @@ describe('Interpals Test Examples', () => {
 		const aboutPageURL = await interpals.goToAboutPage();
 		expect(aboutPageURL).is.equal('About InterPals');
 	});
+
 });
+
