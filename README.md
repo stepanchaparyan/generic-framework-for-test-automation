@@ -5,10 +5,10 @@
 > Hibrid solution for running two most popular test frameworks together
 
 #### Supported browsers and tools
-* browser:chrome framework:puppeteer (on ubuntu 16.04, ubuntu 18.04, windows 10)
-* browser:firefox framework:puppeteer (on ubuntu 16.04, ubuntu 18.04)
-* browser:chrome framework:selenium (on ubuntu 16.04, ubuntu 18.04, windows 10)
-* browser:firefox framework:selenium  (on ubuntu 16.04, ubuntu 18.04, windows 10)
+* browser:chrome framework:puppeteer (on ubuntu 16.04, ubuntu 18.04, windows 10, macOS 10.14)
+* browser:firefox framework:puppeteer (on ubuntu 16.04, ubuntu 18.04, macOS 10.14)
+* browser:chrome framework:selenium (on ubuntu 16.04, ubuntu 18.04, windows 10, macOS 10.14)
+* browser:firefox framework:selenium  (on ubuntu 16.04, ubuntu 18.04, windows 10, macOS 10.14)
 * browser:edge framework:selenium  (windows 10)
 
 

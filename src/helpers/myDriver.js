@@ -1,6 +1,5 @@
 import { Builder } from 'selenium-webdriver';
 import puppeteerFirefox from 'puppeteer-firefox';
-import puppeteerEdge from 'puppeteer-edge';
 import puppeteerChrome from 'puppeteer';
 import chromePuppeteerOptions from '../../settings/settings_puppeteer/chromePuppeteerOptions';
 import firefoxPuppeteerOptions from '../../settings/settings_puppeteer/firefoxPuppeteerOptions';
@@ -66,15 +65,6 @@ export default class Driver {
             .withCapabilities(firefoxSeleniumOptions).build();
             capabilities = await driver.getCapabilities();
             const data = `${await capabilities.getBrowserName()} ${await capabilities.getBrowserVersion()} - Selenium`;
-            console.log(data);
-            checkSendMailArgumentAndWriteTempFile(data);
-
-        } else if (browserFromArgument === 'browser:edge' && frameworkFromArgument === 'framework:puppeteer') {
-            browser = await puppeteerEdge.launch(firefoxPuppeteerOptions);
-            driver = await browser.newPage();
-            await driver.setViewport(puppeteerSettings.viewport);
-            console.log(await browser.version(),' - Puppeteer');
-            const data = `${await browser.version()} - Puppeteer`;
             console.log(data);
             checkSendMailArgumentAndWriteTempFile(data);
 
