@@ -32,20 +32,26 @@ npm install
 
 ```diff
 ├── node_modules
-├── settings__puppeteer
-├── settings__selenium
+├── settings
+    ├── settings__puppeteer
+    ├── settings__selenium
+    ├── settings__testrail
 ├── src
     ├── helpers
-        ├── myDriver.js
-    ├── edx(example)
-        ├── edxConstants.js
-        ├── edxPage.js
+        ├── actions.js
+        ├── mailSender.js
+        ├── myDriver.js 
+        ├── sendMail.js
+        ├── utils.js         
+    ├── linguatrip(example)
+        ├── linguatripConstants.js
+        ├── linguatripPage.js
 +   └── yourPage
 +       ├── yourPageConstants
 +       └── yourPage.js
 ├── test
 +   ├── allTests.spec.js
-    ├── edx.spec.js(example)
+    ├── linguatrip.spec.js(example)
 +   └── yourTests.spec.js
 ├── .babelrc
 ├── .eslintrc.js
@@ -61,27 +67,17 @@ npm install
 ```sh
 test (  1-st parameter - browser:browserType (default is chrome)
         2-nd parameter - framework:frameworkType  (default is puppeteer) 
-        3-th parameter - sendMail or noMail  (default is noMail)
-        
-    e.g. npm test browser:chrome framework:selenium noMail
+        optional parameters - 
+            sendMail (default - does not send report mail),   
+            TestRail (default - does not update TestRail),    
+            deleteCookies (default - does not delete cookies),   
+           
+    e.g. npm test browser:chrome framework:selenium TestRail
 )
-
 ```
 #### Method 2-nd way - test by existing scripts
 ```sh
-test:all (run all tests with all mentioned browsers, one after another, without sending report mail)
-test:all_sendMail (run all tests with all mentioned browsers, one after another, with sending report mail)
+test:all (run all tests with all mentioned browsers one after another)
 test:all_parallel (run all tests with all mentioned browsers),
-test:all_parallel_sendMail (run all tests with all mentioned browsers and send mail), 
-test:chrome_puppeteer (run only puppeteer on chrome)
-test:chrome_puppeteer_sendMail (run only puppeteer on chrome and send report mail)
-test:firefox_puppeteer (run only puppeteer on firefox)
-test:firefox_puppeteer_sendMail (run only puppeteer on firefox and send report mail) 
-test:chrome_selenium (run only selenium on chrome)
-test:chrome_selenium_sendMail (run only selenium on chrome and send report mail)
-test:firefox_selenium (run only selenium on firefox)
-test:firefox_selenium_sendMail (run only selenium on firefox and send report mail)
-test:edge_selenium (run only selenium on edge)
-test:edge_selenium_sendMail (run only selenium on edge and send report mail)
+
 ```
-	
