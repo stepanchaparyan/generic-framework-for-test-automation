@@ -1,6 +1,6 @@
-import nodemailer from 'nodemailer';
-import fs from 'fs';
-import { promisify } from 'util';
+const nodemailer = require('nodemailer');
+const fs = require('fs');
+const { promisify } = require('util');
 
 const readFile = promisify(fs.readFile);
 module.exports = async function (browserVersion) {
@@ -23,7 +23,7 @@ module.exports = async function (browserVersion) {
 			to: ' "Customer" chaparyanstepan@gmail.com', // list of receivers
 			subject: 'Test results ✔', // Subject line
 			html: ` <h1><b>See report for last test <b></h1>					
-					<h2><b>Brower Version - ${browserVersion} <b></h2>
+					<h2><b>Brower Version and Framework - ${browserVersion} <b></h2>
 					<h2>Tests - <b>${report.stats.tests} <b></h2>
 					<p>Pass - <b>${report.stats.passes} <b></p>
               		<p>Pending - <b>${report.stats.pending}<b></p>

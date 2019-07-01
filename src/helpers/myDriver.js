@@ -8,9 +8,11 @@ import * as puppeteerSettings from '../../settings/settings_puppeteer/puppeteerS
 import chromeSeleniumOptions from '../../settings/settings_selenium/chromeSeleniumOptions';
 import firefoxSeleniumOptions from '../../settings/settings_selenium/firefoxSeleniumOptions';
 import edgeSeleniumOptions from '../../settings/settings_selenium/edgeSeleniumOptions';
+import fs from 'fs';
 
 import args from 'minimist';
 const argumentS = args(process.argv.slice(2));
+const sendMail = argumentS._.includes('sendMail') ? true : false;
 
 let browserFromArgument, frameworkFromArgument;
 let browser, driver, capabilities;
@@ -29,6 +31,17 @@ if (argumentS._.length === 1) {
     frameworkFromArgument = argumentS._[2];
 }
 
+const checkSendMailArgumentAndWriteTempFile = function (data) {
+    if (sendMail) {
+        fs.writeFile('src/helpers/tmp.js', data, function(err) {
+            if (err) {
+                return console.log(err);
+            }
+            //console.log('The file was saved!');
+        });
+    }
+};
+
 export default class Driver {
 
     async runDriver() {
@@ -36,37 +49,50 @@ export default class Driver {
             driver = new Builder().forBrowser('chrome')
             .setChromeOptions(chromeSeleniumOptions).build();
             capabilities = await driver.getCapabilities();
-            console.log(await capabilities.get('browserName'), await capabilities.get('version'),' - Selenium');
+            const data = `${await capabilities.get('browserName')} ${await capabilities.get('version')} - Selenium`;
+            console.log(data);
+            checkSendMailArgumentAndWriteTempFile(data);
 
         } else if (browserFromArgument === 'browser:edge' && frameworkFromArgument === 'framework:selenium') {
             driver = new Builder().forBrowser('MicrosoftEdge')
             .withCapabilities(edgeSeleniumOptions).build();
             capabilities = await driver.getCapabilities();
-            console.log(await capabilities.getBrowserName(), await capabilities.getBrowserVersion(),' - Selenium');
+            const data = `${await capabilities.getBrowserName()} ${await capabilities.getBrowserVersion()} - Selenium`;
+            console.log(data);
+            checkSendMailArgumentAndWriteTempFile(data);
 
         } else if (browserFromArgument === 'browser:firefox' && frameworkFromArgument === 'framework:selenium') {
             driver = new Builder().forBrowser('firefox')
             .withCapabilities(firefoxSeleniumOptions).build();
             capabilities = await driver.getCapabilities();
-            console.log(await capabilities.getBrowserName(), await capabilities.getBrowserVersion(),' - Selenium');
+            const data = `${await capabilities.getBrowserName()} ${await capabilities.getBrowserVersion()} - Selenium`;
+            console.log(data);
+            checkSendMailArgumentAndWriteTempFile(data);
 
         } else if (browserFromArgument === 'browser:edge' && frameworkFromArgument === 'framework:puppeteer') {
             browser = await puppeteerEdge.launch(firefoxPuppeteerOptions);
             driver = await browser.newPage();
             await driver.setViewport(puppeteerSettings.viewport);
             console.log(await browser.version(),' - Puppeteer');
+            const data = `${await browser.version()} - Puppeteer`;
+            console.log(data);
+            checkSendMailArgumentAndWriteTempFile(data);
 
         } else if (browserFromArgument === 'browser:chrome' && frameworkFromArgument === 'framework:puppeteer') {
             browser = await puppeteerChrome.launch(chromePuppeteerOptions);
             driver = await browser.newPage();
             await driver.setViewport(puppeteerSettings.viewport);
-            console.log(await browser.version(), ' - Puppeteer', );
+            const data = `${await browser.version()} - Puppeteer`;
+            console.log(data);
+            checkSendMailArgumentAndWriteTempFile(data);
 
         } else if (browserFromArgument === 'browser:firefox' && frameworkFromArgument === 'framework:puppeteer') {
             browser = await puppeteerFirefox.launch(firefoxPuppeteerOptions);
             driver = await browser.newPage();
             await driver.setViewport(puppeteerSettings.viewport);
-            console.log(await browser.version(),' - Puppeteer');
+            const data = `${await browser.version()} - Puppeteer`;
+            console.log(data);
+            checkSendMailArgumentAndWriteTempFile(data);
 
         } else {
             throw new Error('Wrong parameters: 1-st parameter must be browser:browserType, 2-nd framework:frameworkType, for example "npm test browser:chrome framework:selenium"');
