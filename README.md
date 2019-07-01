@@ -62,6 +62,17 @@ npm install
 └── readme.md
 ```
 
+## TestRail integration
+```sh
+add your testrail credentials (hostname,mail,password) into settings/test_rail/testRailSettings file
+```
+
+## Report mail sender integration
+```sh
+add your credentials (report sender email, password, report receiver email) into src/helpers/mailSender file
+also, for sender email need to allow less secure apps:ON (https//myaccount.google.com/lesssecureapps) 
+```
+
 ## Run tests
 #### Method 1 - test with parameters
 ```sh

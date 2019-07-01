@@ -12,15 +12,15 @@ module.exports = async function (browserVersion) {
 			port: 587,
 			secure: false,
 			auth: {
-				user: 'uiautotesting',
-				pass: 'Test05##'
+				user: 'exampleSender',
+				pass: 'senderPassword'
 			}
 		});
 
 		// send mail with defined transport object
 		let info = await transporter.sendMail({
-			from: '"Test Automation" <uiautotesting@gmail.com>', // sender address
-			to: ' "Customer" chaparyanstepan@gmail.com', // list of receivers
+			from: '"Sender name" <exampleSender@gmail.com>', // sender address
+			to: ' "Receiver Name" exampleReceiver@gmail.com', // list of receivers
 			subject: 'Test results ✔', // Subject line
 			html: ` <h1><b>See report for last test <b></h1>					
 					<h2><b>Brower Version and Framework - ${browserVersion} <b></h2>

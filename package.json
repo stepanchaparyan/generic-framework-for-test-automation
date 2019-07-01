@@ -1,7 +1,7 @@
 {
 	"name": "automation-testing",
-	"version": "0.0.1",
-	"description": "hybrid automation tool for puppeteer and selenium with mocha-chai",
+	"version": "0.1.0",
+	"description": "generic automation tool for puppeteer and selenium with mocha-chai",
 	"scripts": {
 		"test": "mocha --opts mocha.opts",
 		"posttest": "node src/helpers/sendMail.js",
@@ -22,10 +22,6 @@
 	],
 	"author": "stepanchaparyan",
 	"license": "ISC",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/stepanchaparyan/hybrid_selenium_puppeteer.git"
-	},
 	"dependencies": {
 		"api-testrail": "^1.2.2",
 		"chai": "^4.1.2",
